@@ -1,7 +1,8 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(#87ceeb, #cceeff);
+  background: linear-gradient(#7ec8ff, #dff3ff);
+  overflow: hidden;
 }
 
 /* UI */
@@ -10,30 +11,46 @@ body {
   top: 10px;
   left: 10px;
   background: white;
-  padding: 15px;
+  padding: 12px;
   border-radius: 10px;
-  width: 220px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-.stats p {
-  margin: 5px 0;
+  width: 200px;
+  z-index: 10;
 }
 
 button {
   width: 100%;
-  margin-top: 8px;
-  padding: 8px;
+  margin-top: 6px;
+  padding: 6px;
   cursor: pointer;
 }
 
-/* City Scene */
+/* City */
 .city {
   position: relative;
   height: 100vh;
-  overflow: hidden;
 }
 
+/* Clouds animation */
+.cloud {
+  position: absolute;
+  top: 50px;
+  width: 120px;
+  height: 50px;
+  background: white;
+  border-radius: 30px;
+  opacity: 0.8;
+  animation: moveClouds 40s linear infinite;
+}
+
+.cloud1 { left: -150px; top: 60px; }
+.cloud2 { left: -300px; top: 120px; animation-duration: 60s; }
+
+@keyframes moveClouds {
+  from { transform: translateX(0); }
+  to { transform: translateX(140vw); }
+}
+
+/* Ground */
 .ground {
   position: absolute;
   bottom: 0;
@@ -42,21 +59,22 @@ button {
   background: #4caf50;
 }
 
+/* Buildings */
 #buildings {
   position: absolute;
   bottom: 120px;
   display: flex;
-  gap: 10px;
-  padding: 10px;
+  gap: 12px;
+  padding: 12px;
 }
 
-/* House */
+/* House + animation */
 .house {
   width: 50px;
   height: 50px;
   background: #c0392b;
   border: 3px solid #8e2c1f;
-  position: relative;
+  animation: build 0.4s ease-out;
 }
 
 .house::before {
@@ -67,4 +85,28 @@ button {
   width: 56px;
   height: 20px;
   background: #8e2c1f;
+}
+
+@keyframes build {
+  from {
+    transform: translateY(20px) scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Floating money animation */
+.money-float {
+  position: absolute;
+  color: gold;
+  font-weight: bold;
+  animation: floatUp 1s ease-out forwards;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-30px); opacity: 0; }
 }
