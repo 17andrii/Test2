@@ -1,14 +1,14 @@
-/* Mobile Reset */
+/* Reset */
 * { margin:0; padding:0; box-sizing:border-box; }
-body,html { height:100%; font-family:'Segoe UI',sans-serif; overflow:hidden; }
+body,html { height:100%; font-family:'Segoe UI',sans-serif; overflow:hidden; background:#87CEEB; }
 
 /* HUD */
 .hud {
   position: fixed; top:10px; left:50%; transform:translateX(-50%);
-  background: rgba(255,255,255,0.9); padding:10px 20px;
+  background: rgba(255,255,255,0.95); padding:10px 20px;
   border-radius:12px; font-size:18px; font-weight:bold;
   box-shadow:0 4px 15px rgba(0,0,0,0.3); z-index:100;
-  display:flex; gap:10px; align-items:center;
+  display:flex; gap:15px; align-items:center;
 }
 .hud button {
   padding:5px 10px; font-size:14px; border:none; border-radius:6px;
@@ -19,23 +19,15 @@ body,html { height:100%; font-family:'Segoe UI',sans-serif; overflow:hidden; }
 
 /* City */
 .city {
-  position: relative; height:100%; width:100%;
-  background: linear-gradient(#7ec8ff,#dff3ff);
-  overflow-x: scroll; white-space: nowrap;
+  position: relative; height:100%; width:100%; overflow-x:auto;
 }
 
-/* Terrain */
-.terrain {
-  position:absolute; bottom:0;
-  width:20000px; height:200px;
-  background: linear-gradient(#4caf50,#2ecc71);
-  border-top:2px solid #27ae60;
-}
+/* Terrain Canvas */
+#terrainCanvas { position:absolute; bottom:0; left:0; }
 
 /* Buildings container */
 .buildings-container {
-  position:absolute; bottom:200px;
-  display:flex; gap:15px; padding:15px;
+  position:absolute; bottom:200px; display:flex; gap:15px; padding:15px;
 }
 
 /* Building */
@@ -49,11 +41,11 @@ body,html { height:100%; font-family:'Segoe UI',sans-serif; overflow:hidden; }
 }
 
 /* Building types */
-.house { width:50px; height:50px; background:#e74c3c; border:2px solid #c0392b; border-radius:5px; }
+.house { width:50px; height:50px; background:#e74c3c; border-radius:5px; border:2px solid #c0392b; }
 .house::after { content:"🏠"; position:absolute; bottom:5px; font-size:18px; }
-.factory { width:60px; height:80px; background:#95a5a6; border:2px solid #7f8c8d; border-radius:4px; }
+.factory { width:60px; height:80px; background:#95a5a6; border-radius:4px; border:2px solid #7f8c8d; }
 .factory::after { content:"🏭"; position:absolute; bottom:5px; font-size:18px; }
-.shop { width:50px; height:50px; background:#f39c12; border:2px solid #e67e22; border-radius:5px; }
+.shop { width:50px; height:50px; background:#f39c12; border-radius:5px; border:2px solid #e67e22; }
 .shop::after { content:"🏪"; position:absolute; bottom:5px; font-size:18px; }
 .park { width:50px; height:50px; background:#2ecc71; border-radius:50%; border:2px solid #27ae60; }
 .park::after { content:"🌳"; position:absolute; bottom:5px; font-size:18px; }
@@ -61,7 +53,7 @@ body,html { height:100%; font-family:'Segoe UI',sans-serif; overflow:hidden; }
 .school::after { content:"🏫"; position:absolute; bottom:5px; font-size:18px; }
 .hospital { width:60px; height:60px; background:#9b59b6; border-radius:4px; }
 .hospital::after { content:"🏥"; position:absolute; bottom:5px; font-size:18px; }
-.airport { width:80px; height:50px; background:#ecf0f1; border:2px solid #bdc3c7; border-radius:4px; }
+.airport { width:80px; height:50px; background:#ecf0f1; border-radius:4px; border:2px solid #bdc3c7; }
 .airport::after { content:"✈️"; position:absolute; bottom:5px; font-size:18px; }
 
 /* Hover effect */
@@ -70,8 +62,7 @@ body,html { height:100%; font-family:'Segoe UI',sans-serif; overflow:hidden; }
 /* Bottom Menu */
 .bottom-menu {
   position: fixed; bottom:0; left:0; width:100%; display:flex; overflow-x:auto;
-  background: rgba(255,255,255,0.95); padding:10px;
-  box-shadow:0 -4px 10px rgba(0,0,0,0.2);
+  background: rgba(255,255,255,0.95); padding:10px; box-shadow:0 -4px 10px rgba(0,0,0,0.2);
 }
 .build-btn {
   min-width:80px; margin-right:10px; padding:10px;
