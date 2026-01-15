@@ -1,5 +1,5 @@
 // Variables
-let money = 0;
+let money = 10;
 const buildings = [];
 const buildingTypes = {
   house:{cost:10,income:1,level:1},
