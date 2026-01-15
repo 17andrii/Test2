@@ -2,6 +2,14 @@ let money = 0;
 let houses = 0;
 let houseCost = 10;
 
+const moneyEl = document.getElementById("money");
+const housesEl = document.getElementById("houses");
+const buildingsEl = document.getElementById("buildings");
+
+const workBtn = document.getElementById("workBtn");
+const buyHouseBtn = document.getElementById("buyHouse");
+const resetBtn = document.getElementById("resetBtn");
+
 // Load save
 const save = JSON.parse(localStorage.getItem("idleCitySave"));
 if (save) {
@@ -9,13 +17,6 @@ if (save) {
   houses = save.houses;
   houseCost = save.houseCost;
 }
-
-const moneyEl = document.getElementById("money");
-const housesEl = document.getElementById("houses");
-const buildingsEl = document.getElementById("buildings");
-
-const workBtn = document.getElementById("workBtn");
-const buyHouseBtn = document.getElementById("buyHouse");
 
 function saveGame() {
   localStorage.setItem("idleCitySave", JSON.stringify({
@@ -28,10 +29,9 @@ function saveGame() {
 function updateUI() {
   moneyEl.textContent = Math.floor(money);
   housesEl.textContent = houses;
-  buyHouseBtn.textContent = `Buy House (Cost: ${houseCost})`;
+  buyHouseBtn.textContent = `Buy House (${houseCost})`;
 }
 
-// Visual buildings
 function renderBuildings() {
   buildingsEl.innerHTML = "";
   for (let i = 0; i < houses; i++) {
@@ -41,15 +41,27 @@ function renderBuildings() {
   }
 }
 
-// Work button (starter income)
-workBtn.addEventListener("click", () => {
-  money += 1;
+// Floating money effect
+function showMoneyEffect(x, y) {
+  const el = document.createElement("div");
+  el.className = "money-float";
+  el.textContent = "+1";
+  el.style.left = x + "px";
+  el.style.top = y + "px";
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 1000);
+}
+
+// Work
+workBtn.onclick = (e) => {
+  money++;
+  showMoneyEffect(e.clientX, e.clientY);
   updateUI();
   saveGame();
-});
+};
 
 // Buy house
-buyHouseBtn.addEventListener("click", () => {
+buyHouseBtn.onclick = () => {
   if (money >= houseCost) {
     money -= houseCost;
     houses++;
@@ -58,14 +70,22 @@ buyHouseBtn.addEventListener("click", () => {
     updateUI();
     saveGame();
   }
-});
+};
 
 // Passive income
 setInterval(() => {
-  money += houses;
-  updateUI();
-  saveGame();
+  if (houses > 0) {
+    money += houses;
+    updateUI();
+    saveGame();
+  }
 }, 1000);
+
+// RESET FIX
+resetBtn.onclick = () => {
+  localStorage.removeItem("idleCitySave");
+  location.reload();
+};
 
 // Init
 updateUI();
