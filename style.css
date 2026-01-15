@@ -1,108 +1,162 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(#7ec8ff, #dff3ff);
-  overflow: hidden;
-}
+/* Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* UI */
-.game {
+/* Game Panel UI */
+.game-panel {
   position: fixed;
   top: 10px;
   left: 10px;
-  background: white;
-  padding: 12px;
-  border-radius: 10px;
-  width: 200px;
-  z-index: 10;
+  background: rgba(255,255,255,0.95);
+  padding: 15px;
+  border-radius: 12px;
+  width: 250px;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  z-index: 100;
 }
+
+.game-panel h1 { text-align: center; margin-bottom: 10px; }
 
 button {
   width: 100%;
-  margin-top: 6px;
-  padding: 6px;
+  padding: 12px;
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(#f1c40f,#f39c12);
+  color: white;
   cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
 /* City */
 .city {
   position: relative;
   height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  background: linear-gradient(#7ec8ff, #dff3ff);
+  transition: background 2s;
 }
 
-/* Clouds animation */
-.cloud {
-  position: absolute;
-  top: 50px;
-  width: 120px;
-  height: 50px;
-  background: white;
-  border-radius: 30px;
-  opacity: 0.8;
-  animation: moveClouds 40s linear infinite;
-}
+.sky { position:absolute; width:100%; height:100%; z-index:0; }
 
-.cloud1 { left: -150px; top: 60px; }
-.cloud2 { left: -300px; top: 120px; animation-duration: 60s; }
-
-@keyframes moveClouds {
-  from { transform: translateX(0); }
-  to { transform: translateX(140vw); }
-}
-
-/* Ground */
 .ground {
   position: absolute;
   bottom: 0;
   height: 120px;
-  width: 100%;
+  width: 10000px; /* allow city to scroll */
   background: #4caf50;
 }
 
-/* Buildings */
+/* Clouds */
+.cloud {
+  position: absolute;
+  width: 120px;
+  height: 50px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: moveClouds linear infinite;
+}
+
+.cloud1 { top: 60px; left: -150px; animation-duration: 50s; }
+.cloud2 { top: 120px; left: -300px; animation-duration: 80s; }
+
+@keyframes moveClouds {
+  from { transform: translateX(0); }
+  to { transform: translateX(11000px); }
+}
+
+/* Buildings Container */
 #buildings {
   position: absolute;
   bottom: 120px;
   display: flex;
-  gap: 12px;
-  padding: 12px;
+  align-items: flex-end;
+  gap: 15px;
+  padding: 10px;
 }
 
-/* House + animation */
+/* Houses */
+.building {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  display: inline-block;
+  animation: build 0.5s ease-out;
+}
+
 .house {
-  width: 50px;
-  height: 50px;
-  background: #c0392b;
-  border: 3px solid #8e2c1f;
-  animation: build 0.4s ease-out;
+  background: #e74c3c;
+  border: 2px solid #c0392b;
+  border-radius: 4px;
 }
-
 .house::before {
   content: "";
   position: absolute;
+  top: -30px;
+  left: -5px;
+  width: 70px;
+  height: 30px;
+  background: #c0392b;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.factory {
+  background: #95a5a6;
+  width: 60px;
+  height: 80px;
+  border: 2px solid #7f8c8d;
+}
+.factory::before {
+  content: "";
+  position: absolute;
+  top: -25px;
+  left: 15px;
+  width: 30px;
+  height: 25px;
+  background: #7f8c8d;
+}
+
+.shop {
+  background: #f39c12;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #e67e22;
+  border-radius: 5px;
+}
+.shop::before {
+  content: "";
+  position: absolute;
   top: -20px;
-  left: -3px;
-  width: 56px;
+  left: -5px;
+  width: 60px;
   height: 20px;
-  background: #8e2c1f;
+  background: #e67e22;
+  border-radius: 5px 5px 0 0;
 }
 
+/* Build Animation */
 @keyframes build {
-  from {
-    transform: translateY(20px) scale(0.7);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
+  from { transform: translateY(30px) scale(0.5); opacity:0; }
+  to { transform: translateY(0) scale(1); opacity:1; }
 }
 
-/* Floating money animation */
+/* Money Floating */
 .money-float {
   position: absolute;
   color: gold;
   font-weight: bold;
+  font-size: 16px;
   animation: floatUp 1s ease-out forwards;
 }
 
