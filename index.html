@@ -8,21 +8,22 @@
 <body>
 
   <div class="game">
-    <h1>🏙️ Idle City Builder</h1>
+    <h1>🏙️ Idle City</h1>
 
-    <div class="stats">
-      <p>💰 Money: <span id="money">0</span></p>
-      <p>🏠 Houses: <span id="houses">0</span></p>
-    </div>
+    <p>💰 <span id="money">0</span></p>
+    <p>🏠 <span id="houses">0</span></p>
 
     <button id="workBtn">Work (+1)</button>
-    <button id="buyHouse">Buy House (Cost: 10)</button>
+    <button id="buyHouse">Buy House (10)</button>
+    <button id="resetBtn">Reset Game</button>
   </div>
 
-  <!-- 2D City View -->
   <div class="city">
-    <div class="ground"></div>
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+
     <div id="buildings"></div>
+    <div class="ground"></div>
   </div>
 
   <script src="script.js"></script>
