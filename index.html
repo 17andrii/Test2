@@ -2,30 +2,35 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Idle City Builder</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Idle City Mobile</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Modern HUD -->
+<!-- HUD -->
 <div class="hud">
-  <div class="money-display">💰 <span id="money">0</span></div>
-  <button id="workBtn">💼 Work</button>
+  💰 <span id="money">0</span>
 </div>
 
-<!-- 2D City -->
+<!-- City -->
 <div class="city">
   <div class="sky"></div>
   <div class="terrain"></div>
   <div class="buildings-container" id="buildings"></div>
-  <div class="cloud cloud1"></div>
-  <div class="cloud cloud2"></div>
 </div>
 
-<audio id="clickSound" src="sounds/click.mp3"></audio>
-<audio id="buildSound" src="sounds/build.mp3"></audio>
+<!-- Bottom Mobile Menu -->
+<div class="bottom-menu">
+  <button class="build-btn" data-type="house">🏠 House (10)</button>
+  <button class="build-btn" data-type="factory">🏭 Factory (50)</button>
+  <button class="build-btn" data-type="shop">🏪 Shop (100)</button>
+  <button class="build-btn" data-type="park">🌳 Park (30)</button>
+  <button class="build-btn" data-type="school">🏫 School (200)</button>
+  <button class="build-btn" data-type="hospital">🏥 Hospital (500)</button>
+  <button class="build-btn" data-type="airport">✈️ Airport (2000)</button>
+</div>
 
 <script src="script.js"></script>
 </body>
 </html>
-
