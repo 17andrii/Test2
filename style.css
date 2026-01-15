@@ -1,83 +1,77 @@
-/* Reset */
+/* Mobile Reset */
 * { margin:0; padding:0; box-sizing:border-box; }
+
+body,html { height:100%; font-family:'Segoe UI',sans-serif; overflow:hidden; }
 
 /* HUD */
 .hud {
-  position: fixed; top: 10px; left: 50%; transform: translateX(-50%);
-  display: flex; gap: 20px; align-items:center;
-  background: rgba(255,255,255,0.95); padding:10px 20px;
-  border-radius:12px; font-family:'Segoe UI', sans-serif;
-  box-shadow:0 6px 20px rgba(0,0,0,0.3); z-index:100;
+  position: fixed; top:10px; left:50%; transform:translateX(-50%);
+  background: rgba(255,255,255,0.9); padding:10px 20px;
+  border-radius:12px; font-size:20px; font-weight:bold;
+  box-shadow:0 4px 15px rgba(0,0,0,0.3); z-index:100;
 }
-.hud .money-display { font-size: 20px; font-weight:bold; }
-.hud button {
-  padding:12px 20px; font-size:16px; font-weight:bold;
-  border:none; border-radius:8px; background:linear-gradient(#f1c40f,#f39c12);
-  color:white; cursor:pointer; transition:0.2s;
-}
-.hud button:hover { transform: scale(1.05); }
 
 /* City */
 .city {
-  position: relative;
-  height: 100vh;
-  overflow-x: auto;
-  white-space: nowrap;
+  position: relative; height:100%; width:100%;
   background: linear-gradient(#7ec8ff,#dff3ff);
-  transition: background 2s linear;
+  overflow-x: scroll; white-space: nowrap;
 }
 
 /* Terrain */
 .terrain {
-  position: absolute; bottom: 0;
-  width: 10000px;
-  height: 200px;
+  position:absolute; bottom:0;
+  width:20000px; height:200px;
   background: linear-gradient(#4caf50,#2ecc71);
-  border-top: 2px solid #27ae60;
+  border-top:2px solid #27ae60;
 }
-
-/* Clouds */
-.cloud {
-  position:absolute; width:120px; height:50px; background:white; border-radius:50%; opacity:0.8; animation:moveClouds linear infinite;
-}
-.cloud1 { top:50px; left:-150px; animation-duration:50s; }
-.cloud2 { top:120px; left:-300px; animation-duration:80s; }
-@keyframes moveClouds { from{transform:translateX(0);} to{transform:translateX(11000px);} }
 
 /* Buildings container */
-.buildings-container { position:absolute; bottom:200px; display:flex; gap:20px; padding:20px; }
+.buildings-container {
+  position:absolute; bottom:200px;
+  display:flex; gap:15px; padding:15px;
+}
 
-/* Building style */
+/* Building */
 .building {
-  position: relative; display:flex; justify-content:center; align-items:flex-end;
-  flex-direction: column;
-  transition: transform 0.3s;
+  position:relative; display:flex; flex-direction:column; align-items:center;
+  justify-content:flex-end; transition: transform 0.2s;
 }
 .building .label {
-  background: rgba(0,0,0,0.6); color:white;
-  font-size:12px; padding:2px 5px;
-  border-radius:4px; margin-bottom:4px;
-  white-space: nowrap;
+  background: rgba(0,0,0,0.7); color:white; font-size:12px;
+  padding:2px 6px; border-radius:5px; margin-bottom:4px;
 }
 
-/* House */
-.house { width:60px; height:60px; background:#e74c3c; border-radius:6px; border:2px solid #c0392b; position:relative; }
-.house::before { content:""; position:absolute; top:-30px; left:-5px; width:70px; height:30px; background:#c0392b; clip-path: polygon(50% 0%,0% 100%,100% 100%); }
-.house::after { content:"🏠"; position:absolute; bottom:5px; left:10px; font-size:18px; }
+/* Building types */
+.house { width:50px; height:50px; background:#e74c3c; border:2px solid #c0392b; border-radius:5px; }
+.house::after { content:"🏠"; position:absolute; bottom:5px; font-size:18px; }
+.factory { width:60px; height:80px; background:#95a5a6; border:2px solid #7f8c8d; border-radius:4px; }
+.factory::after { content:"🏭"; position:absolute; bottom:5px; font-size:18px; }
+.shop { width:50px; height:50px; background:#f39c12; border:2px solid #e67e22; border-radius:5px; }
+.shop::after { content:"🏪"; position:absolute; bottom:5px; font-size:18px; }
+.park { width:50px; height:50px; background:#2ecc71; border-radius:50%; border:2px solid #27ae60; }
+.park::after { content:"🌳"; position:absolute; bottom:5px; font-size:18px; }
+.school { width:60px; height:60px; background:#3498db; border-radius:4px; }
+.school::after { content:"🏫"; position:absolute; bottom:5px; font-size:18px; }
+.hospital { width:60px; height:60px; background:#9b59b6; border-radius:4px; }
+.hospital::after { content:"🏥"; position:absolute; bottom:5px; font-size:18px; }
+.airport { width:80px; height:50px; background:#ecf0f1; border:2px solid #bdc3c7; border-radius:4px; }
+.airport::after { content:"✈️"; position:absolute; bottom:5px; font-size:18px; }
 
-/* Factory */
-.factory { width:60px; height:80px; background:#95a5a6; border:2px solid #7f8c8d; border-radius:4px; position:relative; }
-.factory::before { content:""; position:absolute; top:-25px; left:15px; width:30px; height:25px; background:#7f8c8d; }
-.factory::after { content:"🏭"; position:absolute; bottom:5px; left:10px; font-size:18px; }
+/* Hover effect */
+.building:hover { transform:translateY(-5px) scale(1.05); }
 
-/* Shop */
-.shop { width:50px; height:50px; background:#f39c12; border:2px solid #e67e22; border-radius:6px; position:relative; }
-.shop::before { content:""; position:absolute; top:-20px; left:-5px; width:60px; height:20px; background:#e67e22; border-radius:5px 5px 0 0; }
-.shop::after { content:"🏪"; position:absolute; bottom:5px; left:10px; font-size:18px; }
+/* Bottom Menu */
+.bottom-menu {
+  position: fixed; bottom:0; left:0; width:100%; display:flex; overflow-x:auto;
+  background: rgba(255,255,255,0.95); padding:10px;
+  box-shadow:0 -4px 10px rgba(0,0,0,0.2);
+}
+.build-btn {
+  min-width:80px; margin-right:10px; padding:10px;
+  font-size:14px; border:none; border-radius:8px;
+  background: linear-gradient(#f1c40f,#f39c12); color:white; cursor:pointer;
+  flex-shrink:0; transition:0.2s;
+}
+.build-btn:hover { transform:scale(1.05); }
 
-/* Park */
-.park { width:50px; height:50px; background:#2ecc71; border-radius:50%; border:2px solid #27ae60; position:relative; }
-.park::after { content:"🌳"; position:absolute; bottom:5px; left:12px; font-size:18px; }
-
-/* Building hover effect */
-.building:hover { transform: translateY(-5px) scale(1.05); }
