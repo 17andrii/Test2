@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Idle City Mobile</title>
+<title>Idle City Builder</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,25 +11,17 @@
 <!-- HUD -->
 <div class="hud">
   💰 <span id="money">0</span>
-  <button id="resetBtn">🔄 Reset Game</button>
+  <button id="resetBtn">🔄 Reset</button>
 </div>
 
 <!-- City -->
 <div class="city">
-  <div class="terrain"></div>
+  <canvas id="terrainCanvas"></canvas>
   <div class="buildings-container" id="buildings"></div>
 </div>
 
-<!-- Bottom Mobile Menu -->
-<div class="bottom-menu">
-  <button class="build-btn" data-type="house">🏠 House (10)</button>
-  <button class="build-btn" data-type="factory">🏭 Factory (50)</button>
-  <button class="build-btn" data-type="shop">🏪 Shop (100)</button>
-  <button class="build-btn" data-type="park">🌳 Park (30)</button>
-  <button class="build-btn" data-type="school">🏫 School (200)</button>
-  <button class="build-btn" data-type="hospital">🏥 Hospital (500)</button>
-  <button class="build-btn" data-type="airport">✈️ Airport (2000)</button>
-</div>
+<!-- Bottom Menu -->
+<div class="bottom-menu" id="buildMenu"></div>
 
 <script src="script.js"></script>
 </body>
