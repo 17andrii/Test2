@@ -1,151 +1,83 @@
 /* Reset */
 * { margin:0; padding:0; box-sizing:border-box; }
 
-/* Game Panel */
-.game-panel {
-  position: fixed;
-  top:10px; left:10px;
-  background: rgba(255,255,255,0.95);
-  padding:15px;
-  border-radius:12px;
-  width:250px;
-  font-family:'Segoe UI', sans-serif;
-  box-shadow:0 6px 20px rgba(0,0,0,0.3);
-  z-index:100;
+/* HUD */
+.hud {
+  position: fixed; top: 10px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 20px; align-items:center;
+  background: rgba(255,255,255,0.95); padding:10px 20px;
+  border-radius:12px; font-family:'Segoe UI', sans-serif;
+  box-shadow:0 6px 20px rgba(0,0,0,0.3); z-index:100;
 }
-
-.game-panel h1 { text-align:center; margin-bottom:10px; }
-
-button {
-  width:100%;
-  padding:12px;
-  margin-top:8px;
-  font-size:16px;
-  font-weight:bold;
-  border:none;
-  border-radius:8px;
-  background: linear-gradient(#f1c40f,#f39c12);
-  color:white;
-  cursor:pointer;
-  transition: transform 0.1s, box-shadow 0.2s;
+.hud .money-display { font-size: 20px; font-weight:bold; }
+.hud button {
+  padding:12px 20px; font-size:16px; font-weight:bold;
+  border:none; border-radius:8px; background:linear-gradient(#f1c40f,#f39c12);
+  color:white; cursor:pointer; transition:0.2s;
 }
-button:hover { transform: scale(1.05); box-shadow:0 4px 10px rgba(0,0,0,0.3); }
+.hud button:hover { transform: scale(1.05); }
 
 /* City */
 .city {
   position: relative;
-  height:100vh;
-  overflow-x:auto;
-  overflow-y:hidden;
-  white-space:nowrap;
-  transition: background 1s linear;
+  height: 100vh;
+  overflow-x: auto;
+  white-space: nowrap;
+  background: linear-gradient(#7ec8ff,#dff3ff);
+  transition: background 2s linear;
 }
 
-.sky { position:absolute; width:100%; height:100%; z-index:0; }
-
-/* Map styling */
-.map {
-  position:absolute;
-  bottom:120px;
-  width:10000px;
-  height:80px;
-  background: repeating-linear-gradient(
-    to right,
-    #7cfc00 0px,
-    #7cfc00 50px,
-    #6b8e23 50px,
-    #6b8e23 100px
-  );
-  z-index:1;
-}
-
-.ground {
-  position:absolute;
-  bottom:0;
-  height:40px;
-  width:10000px;
-  background:#4caf50;
-  z-index:2;
+/* Terrain */
+.terrain {
+  position: absolute; bottom: 0;
+  width: 10000px;
+  height: 200px;
+  background: linear-gradient(#4caf50,#2ecc71);
+  border-top: 2px solid #27ae60;
 }
 
 /* Clouds */
 .cloud {
-  position:absolute;
-  width:120px;
-  height:50px;
-  background:white;
-  border-radius:50%;
-  opacity:0.8;
-  animation: moveClouds linear infinite;
-  z-index:3;
+  position:absolute; width:120px; height:50px; background:white; border-radius:50%; opacity:0.8; animation:moveClouds linear infinite;
 }
-.cloud1 { top:60px; left:-150px; animation-duration:50s; }
+.cloud1 { top:50px; left:-150px; animation-duration:50s; }
 .cloud2 { top:120px; left:-300px; animation-duration:80s; }
-
 @keyframes moveClouds { from{transform:translateX(0);} to{transform:translateX(11000px);} }
 
-/* Buildings */
-#buildings {
-  position:absolute;
-  bottom:120px;
-  display:flex;
-  align-items:flex-end;
-  gap:15px;
-  padding:10px;
-  z-index:4;
-}
+/* Buildings container */
+.buildings-container { position:absolute; bottom:200px; display:flex; gap:20px; padding:20px; }
 
+/* Building style */
 .building {
-  position:relative;
-  display:inline-block;
-  animation: build 0.5s ease-out;
+  position: relative; display:flex; justify-content:center; align-items:flex-end;
+  flex-direction: column;
+  transition: transform 0.3s;
 }
-
-.house, .factory, .shop, .park { position:relative; }
+.building .label {
+  background: rgba(0,0,0,0.6); color:white;
+  font-size:12px; padding:2px 5px;
+  border-radius:4px; margin-bottom:4px;
+  white-space: nowrap;
+}
 
 /* House */
-.house {
-  width:60px;
-  height:60px;
-  background:#e74c3c;
-  border:2px solid #c0392b;
-  border-radius:4px;
-}
-.house::before { content:""; position:absolute; top:-30px; left:-5px; width:70px; height:30px; background:#c0392b; clip-path:polygon(50% 0%,0% 100%,100% 100%); }
-.house::after { content:"🏠"; position:absolute; bottom:5px; left:5px; font-size:16px; }
+.house { width:60px; height:60px; background:#e74c3c; border-radius:6px; border:2px solid #c0392b; position:relative; }
+.house::before { content:""; position:absolute; top:-30px; left:-5px; width:70px; height:30px; background:#c0392b; clip-path: polygon(50% 0%,0% 100%,100% 100%); }
+.house::after { content:"🏠"; position:absolute; bottom:5px; left:10px; font-size:18px; }
 
 /* Factory */
-.factory { width:60px; height:80px; background:#95a5a6; border:2px solid #7f8c8d; }
+.factory { width:60px; height:80px; background:#95a5a6; border:2px solid #7f8c8d; border-radius:4px; position:relative; }
 .factory::before { content:""; position:absolute; top:-25px; left:15px; width:30px; height:25px; background:#7f8c8d; }
 .factory::after { content:"🏭"; position:absolute; bottom:5px; left:10px; font-size:18px; }
 
 /* Shop */
-.shop { width:50px; height:50px; background:#f39c12; border:2px solid #e67e22; border-radius:5px; }
+.shop { width:50px; height:50px; background:#f39c12; border:2px solid #e67e22; border-radius:6px; position:relative; }
 .shop::before { content:""; position:absolute; top:-20px; left:-5px; width:60px; height:20px; background:#e67e22; border-radius:5px 5px 0 0; }
 .shop::after { content:"🏪"; position:absolute; bottom:5px; left:10px; font-size:18px; }
 
 /* Park */
-.park { width:50px; height:50px; background:#2ecc71; border-radius:50%; border:2px solid #27ae60; }
+.park { width:50px; height:50px; background:#2ecc71; border-radius:50%; border:2px solid #27ae60; position:relative; }
 .park::after { content:"🌳"; position:absolute; bottom:5px; left:12px; font-size:18px; }
 
-/* Build animation */
-@keyframes build { from{transform:translateY(30px) scale(0.5);opacity:0;} to{transform:translateY(0) scale(1);opacity:1;} }
-
-/* Pop animation when giving money */
-@keyframes pop {
-  0%{transform:scale(1);}
-  50%{transform:scale(1.2);}
-  100%{transform:scale(1);}
-}
-
-/* Floating money */
-.money-float {
-  position:absolute;
-  color:gold;
-  font-weight:bold;
-  font-size:16px;
-  animation: floatUp 1s ease-out forwards;
-}
-
-@keyframes floatUp { from{transform:translateY(0);opacity:1;} to{transform:translateY(-30px);opacity:0;} }
-
+/* Building hover effect */
+.building:hover { transform: translateY(-5px) scale(1.05); }
