@@ -1,43 +1,70 @@
 body {
+  margin: 0;
   font-family: Arial, sans-serif;
-  background: #87ceeb;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  background: linear-gradient(#87ceeb, #cceeff);
 }
 
+/* UI */
 .game {
-  background: #fff;
-  padding: 20px 30px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: white;
+  padding: 15px;
   border-radius: 10px;
-  text-align: center;
-  width: 300px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-h1 {
-  margin-bottom: 20px;
+  width: 220px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .stats p {
-  font-size: 18px;
+  margin: 5px 0;
 }
 
 button {
-  margin-top: 15px;
-  padding: 10px;
   width: 100%;
-  font-size: 16px;
+  margin-top: 8px;
+  padding: 8px;
   cursor: pointer;
 }
 
-button:hover {
-  background: #ddd;
+/* City Scene */
+.city {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.info {
-  margin-top: 10px;
-  font-size: 14px;
-  color: #555;
+.ground {
+  position: absolute;
+  bottom: 0;
+  height: 120px;
+  width: 100%;
+  background: #4caf50;
+}
+
+#buildings {
+  position: absolute;
+  bottom: 120px;
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+}
+
+/* House */
+.house {
+  width: 50px;
+  height: 50px;
+  background: #c0392b;
+  border: 3px solid #8e2c1f;
+  position: relative;
+}
+
+.house::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -3px;
+  width: 56px;
+  height: 20px;
+  background: #8e2c1f;
 }
