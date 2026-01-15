@@ -1,15 +1,21 @@
 /* Mobile Reset */
 * { margin:0; padding:0; box-sizing:border-box; }
-
 body,html { height:100%; font-family:'Segoe UI',sans-serif; overflow:hidden; }
 
 /* HUD */
 .hud {
   position: fixed; top:10px; left:50%; transform:translateX(-50%);
   background: rgba(255,255,255,0.9); padding:10px 20px;
-  border-radius:12px; font-size:20px; font-weight:bold;
+  border-radius:12px; font-size:18px; font-weight:bold;
   box-shadow:0 4px 15px rgba(0,0,0,0.3); z-index:100;
+  display:flex; gap:10px; align-items:center;
 }
+.hud button {
+  padding:5px 10px; font-size:14px; border:none; border-radius:6px;
+  background: linear-gradient(#f1c40f,#f39c12); color:white; cursor:pointer;
+  transition:0.2s;
+}
+.hud button:hover { transform:scale(1.05); }
 
 /* City */
 .city {
@@ -74,4 +80,3 @@ body,html { height:100%; font-family:'Segoe UI',sans-serif; overflow:hidden; }
   flex-shrink:0; transition:0.2s;
 }
 .build-btn:hover { transform:scale(1.05); }
-
