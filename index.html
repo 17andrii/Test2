@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Idle City Builder</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <div class="game">
+  <!-- UI Panel -->
+  <div class="game-panel">
     <h1>🏙️ Idle City</h1>
+    <p>💰 Money: <span id="money">0</span></p>
+    <p>🏠 Houses: <span id="houses">0</span></p>
+    <p>🏭 Factories: <span id="factories">0</span></p>
+    <p>🏪 Shops: <span id="shops">0</span></p>
 
-    <p>💰 <span id="money">0</span></p>
-    <p>🏠 <span id="houses">0</span></p>
-
-    <button id="workBtn">Work (+1)</button>
+    <button id="workBtn">💼 Work</button>
     <button id="buyHouse">Buy House (10)</button>
+    <button id="buyFactory">Buy Factory (50)</button>
+    <button id="buyShop">Buy Shop (100)</button>
     <button id="resetBtn">Reset Game</button>
   </div>
 
+  <!-- 2D City -->
   <div class="city">
+    <div class="sky"></div>
     <div class="cloud cloud1"></div>
     <div class="cloud cloud2"></div>
-
     <div id="buildings"></div>
     <div class="ground"></div>
   </div>
+
+  <audio id="clickSound" src="sounds/click.mp3"></audio>
+  <audio id="buildSound" src="sounds/build.mp3"></audio>
 
   <script src="script.js"></script>
 </body>
