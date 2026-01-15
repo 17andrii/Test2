@@ -6,19 +6,26 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
   <div class="game">
     <h1>🏙️ Idle City Builder</h1>
 
     <div class="stats">
       <p>💰 Money: <span id="money">0</span></p>
-      <p>🏢 Houses: <span id="houses">0</span></p>
+      <p>🏠 Houses: <span id="houses">0</span></p>
     </div>
 
+    <button id="workBtn">Work (+1)</button>
     <button id="buyHouse">Buy House (Cost: 10)</button>
+  </div>
 
-    <p class="info">Each house generates 1 money per second.</p>
+  <!-- 2D City View -->
+  <div class="city">
+    <div class="ground"></div>
+    <div id="buildings"></div>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
+
